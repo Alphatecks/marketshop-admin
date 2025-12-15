@@ -301,31 +301,30 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
 .features-title {
   font-weight: 600;
   font-size: 1rem;
+  white-space: nowrap;
 }
 
 .features-divider {
   color: rgba(255, 255, 255, 0.5);
   font-size: 1.2rem;
-}
-
-.features-list {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
 .feature-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .feature-icon {
@@ -333,6 +332,12 @@
   height: 1.2rem;
   object-fit: contain;
   display: inline-block;
+  flex-shrink: 0;
+}
+
+.feature-icon-text {
+  display: inline-block;
+  font-size: 1rem;
 }
 
 /* Carousel Indicators */
@@ -607,6 +612,7 @@
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   border: 1px solid #f0f0f0;
+  cursor: pointer;
 }
 
 .product-card:hover {
@@ -699,6 +705,466 @@
   text-decoration: line-through;
 }
 
+/* Shop Page */
+.shop-hero {
+  position: relative;
+  padding: 4rem 2rem;
+  background-color: #061b12;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.shop-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--shop-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.shop-hero-overlay {
+  position: relative;
+  z-index: 1;
+}
+
+.shop-hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shop-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.shop-hero-subtitle {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #b7ff5b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.shop-hero-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.shop-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  color: #cfd8dc;
+}
+
+.shop-breadcrumbs a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.shop-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  opacity: 0.7;
+}
+
+.shop-content {
+  padding: 3rem 2rem 4rem;
+  background-color: #ffffff;
+}
+
+.shop-content-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 3fr 1.2fr;
+  gap: 2.5rem;
+}
+
+.shop-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.shop-view-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.view-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.view-btn.active {
+  border-color: #4CAF50;
+  color: #4CAF50;
+}
+
+.shop-results {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+}
+
+.shop-sort-select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+}
+
+.shop-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.shop-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.shop-sidebar-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: #ffffff;
+}
+
+.shop-sidebar-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.shop-categories-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.shop-price-range-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0 0 0.25rem 0;
+}
+
+.shop-price-range {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4CAF50;
+  margin-bottom: 0.75rem;
+}
+
+.shop-price-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #4CAF50 0%, #c8e6c9 100%);
+  outline: none;
+  cursor: pointer;
+}
+
+.shop-price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.4);
+}
+
+.shop-price-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.4);
+}
+
+.shop-top-rated-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.shop-top-rated-item {
+  display: flex;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.shop-top-rated-image {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.shop-top-rated-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.shop-top-rated-rating {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.shop-top-rated-name {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.shop-top-rated-price {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.shop-search {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.shop-search-input {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+}
+
+.shop-search-button {
+  width: 40px;
+  border-radius: 4px;
+  border: none;
+  background-color: #4CAF50;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.shop-tag {
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.shop-tag:hover {
+  border-color: #4CAF50;
+  color: #4CAF50;
+}
+
+.shop-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.shop-size-option {
+  width: 40px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.shop-size-option:hover {
+  border-color: #4CAF50;
+  color: #4CAF50;
+}
+
+.shop-colors {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.35rem;
+}
+
+.shop-color-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+}
+
+.shop-color-swatch:hover {
+  border-color: #4CAF50;
+}
+
+.shop-promo-card {
+  position: relative;
+  background-color: #f3f9ec;
+  overflow: hidden;
+}
+
+.shop-promo-subtitle {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  color: #8bc34a;
+  margin: 0 0 0.25rem 0;
+}
+
+.shop-promo-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.shop-promo-text {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+.shop-promo-button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  background-color: #4CAF50;
+  color: #ffffff;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.shop-promo-image-wrapper {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.shop-promo-image {
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+}
+
+.shop-pagination-section {
+  padding: 0 2rem 3rem;
+  background-color: #ffffff;
+}
+
+.shop-pagination-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.shop-page-button {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.shop-page-button.active {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border-color: #4CAF50;
+}
+
+@media (max-width: 1024px) {
+  .shop-content-container {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .shop-hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .shop-content {
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .shop-products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 1024px) {
   .categories-row:first-child,
   .categories-row:last-child {
@@ -728,18 +1194,21 @@
     font-size: 2rem;
   }
   
+  .features-banner {
+    padding: 1rem;
+  }
+  
   .features-container {
-    flex-direction: column;
     gap: 1rem;
+    font-size: 0.85rem;
   }
   
-  .features-divider {
-    display: none;
+  .features-title {
+    font-size: 0.9rem;
   }
   
-  .features-list {
-    flex-direction: column;
-    gap: 1rem;
+  .feature-item {
+    font-size: 0.8rem;
   }
   
   .shop-now-btn {
@@ -983,6 +1452,7 @@
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   border: 1px solid #f0f0f0;
+  cursor: pointer;
 }
 
 .featured-card:hover {
@@ -1598,11 +2068,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Jost', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
   text-decoration: none;
   transition: background-color 0.3s;
+  padding: 0;
+}
+
+.social-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .social-icon:hover {
